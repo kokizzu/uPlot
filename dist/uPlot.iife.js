@@ -1645,8 +1645,8 @@ var uPlot = (function () {
 						wsc.min = minMax[0];
 						wsc.max = minMax[1];
 
-						i0 = closestIdx(wsc.min, data[0]);
-						i1 = closestIdx(wsc.max, data[0]);
+						i0 = closestIdx(wsc.min, data0);
+						i1 = closestIdx(wsc.max, data0);
 
 						// closest indices can be outside of view
 						if (data[0][i0] < wsc.min)
@@ -2302,8 +2302,8 @@ var uPlot = (function () {
 
 				if (key == xScaleKey) {
 					if (sc.distr == 2 && dataLen > 0) {
-						opts.min = closestIdx(opts.min, data[0]);
-						opts.max = closestIdx(opts.max, data[0]);
+						opts.min = closestIdx(opts.min, data0);
+						opts.max = closestIdx(opts.max, data0);
 					}
 
 					// prevent setting a temporal x scale too small since Date objects cannot advance ticks smaller than 1ms
@@ -2518,10 +2518,10 @@ var uPlot = (function () {
 
 		function closestIdxFromXpos(pos) {
 			var v = scaleValueAtPos(pos, xScaleKey);
-			return closestIdx(v, data[0], i0, i1);
+			return closestIdx(v, data0, i0, i1);
 		}
 
-		self.valToIdx = function (val) { return closestIdx(val, data[0]); };
+		self.valToIdx = function (val) { return closestIdx(val, data0); };
 		self.posToIdx = closestIdxFromXpos;
 		self.posToVal = scaleValueAtPos;
 		self.valToPos = function (val, scale, can) { return (
